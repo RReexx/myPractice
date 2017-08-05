@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="js/browser.js" charset="utf-8"></script>
+    <script src="js/react.js" charset="utf-8"></script>
+    <script src="js/react-dom.js" charset="utf-8"></script>
+    <script type="text/babel">
+    class Child extends React.Component{
+        constructor(...args){
+            super(...args);
+        }
+        componentWillReceiveProps(){
+            console.log("receive props");
+        }
+        render(){
+            return <span>{this.props.name}</span>;
+        }
+    }
+
+    class Parent extends React.Component{
+        constructor(...args){
+            super(...args);
+            this.state={i:0};
+        }
+        fn(){
+            this.setState({i:this.state.i+1});
+        }
+        render(){
+            return <div>
+                <input type="button" onClick={this.fn.bind(this)} value="pushprop" />
+                <Child name={this.state.i} />
+            </div>
+        }
+    }
+
+    window.onload=function(){
+        var oDiv=document.getElementById("div1");        
+        ReactDOM.render(<Parent />,oDiv);                    
+    }
+    </script>
+  </head>
+  <body>
+    <div id="div1">
+    </div>
+  </body>
+</html>

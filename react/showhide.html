@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="js/browser.js" charset="utf-8"></script>
+    <script src="js/react.js" charset="utf-8"></script>
+    <script src="js/react-dom.js" charset="utf-8"></script>
+    <style>
+        #showhide{
+            height: 200px;
+            width: 200px;
+            background: red;
+            display: block;
+        }
+    </style>
+    <script type="text/babel">
+    class ShowHide extends React.Component{
+        constructor(...args){
+            super(...args);
+            this.state={display:"block"};
+        }
+        fn(ev){
+            this.setState({display:this.state.display==="block"?"none":"block"});
+        }
+        render(){
+            return <div>
+                <input type="button" value="toggle" onClick={this.fn.bind(this)} />
+                <div id="showhide" style={{display:this.state.display}}></div>
+            </div>
+        }
+    }
+
+    window.onload=function(){
+        var oDiv=document.getElementById("div1");
+        ReactDOM.render(<ShowHide />,oDiv);
+    }
+    </script>
+  </head>
+  <body>
+    <div id="div1">
+    </div>
+  </body>
+</html>

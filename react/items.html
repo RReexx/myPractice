@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="js/browser.js" charset="utf-8"></script>
+    <script src="js/react.js" charset="utf-8"></script>
+    <script src="js/react-dom.js" charset="utf-8"></script>
+    <script type="text/babel">
+    class Item extends React.Component{
+        constructor(...args){
+            super(...args);
+        }
+        
+        render(){
+            return <li>{this.props.value}</li>;
+        }
+    }
+
+    class List extends React.Component{
+        constructor(...args){
+            super(...args);
+            this.state={arr:[1,2,3,4]};
+        }
+        fn(){
+            this.setState({arr:this.state.arr.concat([Math.random()])});
+        }
+        render(){
+            var arr=this.state.arr;
+            var result=[];
+            for (var i=0;i<arr.length;i++){
+                result.push(<Item key={i} value={arr[i]}/>);
+            }
+            return <div>
+                <input type="button" value="add" onClick={this.fn.bind(this)} />
+                {result}                
+            </div>
+        }
+    }
+
+    window.onload=function(){
+        var oDiv=document.getElementById("div1");        
+        ReactDOM.render(<List />,oDiv);                    
+    }
+    </script>
+  </head>
+  <body>
+    <div id="div1">
+    </div>
+  </body>
+</html>

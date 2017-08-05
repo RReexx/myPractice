@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="js/browser.js" charset="utf-8"></script>
+    <script src="js/react.js" charset="utf-8"></script>
+    <script src="js/react-dom.js" charset="utf-8"></script>
+    <script type="text/babel">
+    class Clock extends React.Component{
+        constructor(...args){
+            super(...args);
+            this.state={h:0,m:0,s:0};
+            var that=this;
+            setInterval(function(){
+                that.tick();
+            },1000);
+        }
+        componentDidMount(){
+            this.tick();
+        }
+        tick(){
+            var oDate=new Date();
+            var h=oDate.getHours();
+            var m=oDate.getMinutes();
+            var s=oDate.getSeconds();
+            this.setState({h,m,s});
+        }
+        render(){
+            return <div>
+                <span>{this.state.h}</span>:
+                <span>{this.state.m}</span>:
+                <span>{this.state.s}</span>
+            </div>
+        }
+    }
+
+    window.onload=function(){
+        var oDiv=document.getElementById("div1");
+        ReactDOM.render(<Clock />,oDiv);
+    }
+    </script>
+  </head>
+  <body>
+    <div id="div1">
+    </div>
+  </body>
+</html>

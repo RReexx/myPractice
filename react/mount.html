@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="js/browser.js" charset="utf-8"></script>
+    <script src="js/react.js" charset="utf-8"></script>
+    <script src="js/react-dom.js" charset="utf-8"></script>
+    <script type="text/babel">
+    class Comp extends React.Component{
+        componentWillMount(){
+            console.log("will mount");
+        }
+        componentDidMount(){
+            console.log("did mount");
+        }
+        render(){
+            return <span>aaa</span>;
+        }
+    }
+
+    window.onload=function(){
+        var oDiv=document.getElementById("div1");
+        ReactDOM.render(<Comp />,oDiv);
+    }
+    </script>
+  </head>
+  <body>
+    <div id="div1">
+    </div>
+  </body>
+</html>
