@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://google.github.io/traceur-compiler/bin/traceur.js"></script>
+	<script src="https://google.github.io/traceur-compiler/bin/BrowserSystem.js"></script>
+	<script src="https://google.github.io/traceur-compiler/src/bootstrap.js"></script>
+	<script type="module">
+		class Collection{
+			constructor(){
+				this.items=[];
+			}
+			*[Symbol.iterator](){
+				yield *this.items.values();
+			}
+		}
+
+		var c=new Collection();
+		c.items.push(1);
+		c.items.push(2);
+		c.items.push(3);
+		c.items.push(4);
+		for (let v of c){
+			console.log(v);
+		}
+	</script>
+</head>
+<body>
+
+</body>
+</html>
