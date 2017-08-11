@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="js/browser.js" charset="utf-8"></script>
+    <script src="js/react.js" charset="utf-8"></script>
+    <script src="js/react-dom.js" charset="utf-8"></script>
+    <script src="js/jquery.js" charset="utf-8"></script>
+    <style>
+        .box {
+            width:100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+    <script type="text/babel">
+    class DragDrop extends React.Component{
+        constructor(...args){
+            super(...args);
+            this.state={x:20,y:20};
+        }
+        fn(ev){
+            var distX=ev.pageX-this.state.x;
+            var distY=ev.pageY-this.state.y;
+            var _this=this;
+            document.onmousemove=function(ev){
+                _this.setState({
+                    x:ev.pageX-distX,
+                    y:ev.pageY-distY
+                });
+            }
+            document.onmouseup=function(){
+                document.onmousemove=null;
+                document.onmouseup=null;
+            }
+        }
+        render(){
+            return <div className="box" 
+            style={{position:"absolute",left:this.state.x+"px",top:this.state.y+"px"}} 
+            onMouseDown={this.fn.bind(this)}>aaa</div>
+        }
+    }
+    window.onload=function(){
+        var oDiv=document.getElementById("div1");
+        ReactDOM.render(<DragDrop/>,oDiv);
+    }
+
+    //
+    </script>
+  </head>
+  <body>
+    <div id="div1"></div>
+  </body>
+</html>
